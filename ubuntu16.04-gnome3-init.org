@@ -1,0 +1,127 @@
+
+https://www.cnblogs.com/EasonJim/p/7857671.html Ubuntu 16.04设置IP、网关、DNS
+  sudo service network-manager stop/start
+http://blog.csdn.net/a1429331875/article/details/49683605 Ubuntu下Firefox有些网页打不开的解决
+sudo nano /etc/resolv.conf 设置dns服务器地址. 将你原来的dns服务器地址换成下面两个
+nameserver 211.99.25.1
+nameserver 202.106.0.20 
+设置完毕后重启网络：sudo /etc/init.d/networking restartf
+
+http://www.jb51.net/article/100611.htm 安装Ubuntu 16.04后要做的事（总结）
+
+http://blog.csdn.net/xw12138/article/details/78005554?locationNum=2&fps=1 ubuntu16.04主题美化和软件推荐
+http://blog.csdn.net/u013160795/article/details/54615147?%3E Ubuntu16.04 安装常用软件
+
+http://blog.csdn.net/liuqz2009/article/details/52087019 Ubuntu 16.04LTS安装后需要做的事
+秒变mac os  修改快捷键
+
+安装阿里云源
+
+提示安装更新，点击next后，报错按提示运行解决
+  sudo apt-get install -f  # apt安装时提示依赖问题可通过这条命令解决
+
+安装 google
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google..
+蓝灯 https://github.com/getlantern/lantern 下载Ubuntu 14.04 64 bit版 dpkg -i 安装可以使用
+参考http://blog.csdn.net/u013160795/article/details/54615147?%3E
+安装shadowsocks-qt5：https://www.cnblogs.com/susuAr/p/8052229.html
+
+sudo add-apt-repository ppa:hzwhuang/ss-qt5
+sudo apt-get update
+sudo apt-get install shadowsocks-qt5
+ll /etc/apt/sources.list.d/
+
+配置shadowsocks帐号信息
+参考 http://blog.csdn.net/li740207611/article/details/50479320
+
+安装gnome3
+https://www.zhihu.com/question/20509148 如何优雅地使用 Ubuntu
+http://pysaber.com/2017/06/06/Ubuntu16-04%E5%AE%89%E8%A3%85Gnome3%E6%A1%8C%E9%9D%A2%E5%92%8CArc%E4%B8%BB%E9%A2%98/ Ubuntu16.04桌面环境推荐:Gnome3桌面+Arc主题
+https://www.gnome-look.org
+$ sudo add-apt-repository ppa:gnome3-team/gnome3-staging
+$ sudo add-apt-repository ppa:gnome3-team/gnome3
+sudo apt-get update
+sudo apt-get install gnome-shell
+gnome-shell --version
+GNOME Shell 3.18.5
+# 安装过程中会出现一个选择界面，这里选择gdm选项
+sudo apt-get install ubuntu-gnome-desktop
+# 安装完重启系统就行了，在登录界面还是可以选择使用原来Ubuntu自带的Unity桌面环境，不需要的话也可以直接把Unity桌面环境卸载了
+sudo apt-get install gnome
+
+
+安装Flat-Plat-Blue主题
+https://github.com/peterychuang/Flat-Plat-Blue 
+下载release版，解压到/usr/share/themes下，进入目录，
+sudo ./install.sh  #官方README上介绍的sudo sh ./install.sh 报错 
+
+
+安装gnome后卸载unity
+安装gnome后卸载unity
+安装gnome后卸载unity
+参考官网
+参考官网
+
+安装gnome插件
+https://wiki.gnome.org/Projects/GnomeShellIntegrationForChrome/Installation#Ubuntu_Linux 
+
+https://micheleg.github.io/dash-to-dock/download.html
+https://github.com/dmo60/CoverflowAltTab
+https://github.com/AMDG2/GnomeShell_DynamicTopBar
+
+安装字体
+http://blog.csdn.net/mengtianwxs/article/details/53231161
+sudo mkfontscale && sudo mkfontdir && sudo fc-cache -fv
+https://wiki.ubuntu.com.cn/%E5%AD%97%E4%BD%93#.E9.85.8D.E7.BD.AE.fonts.conf
+sudo apt-get install xfonts-wqy #文泉驿-点阵宋体
+
+设置term inal 背景 menu->Edit->Profile Preferences
+原来字体 Monospace
+设置字体
+中英文等宽字体 # 字体间距重复或太宽时用中英文等宽字体 
+Monospace 中文间距太宽 
+文泉驿等宽微米黑 中文间距太宽
+泉驿等宽正黑（WenQuanYi Zen Hei Mono Medium）最终选这款
+Ubuntu Mono  unity桌面终端字体，以前用过
+
+中文好看字体 微软雅黑
+英文好看字体 Monaco
+
+
+emacs
+http://wikemacs.org/wiki/Installing_Emacs_on_GNU/Linux#Emacs_25
+使用24版
+使用24版
+
+sudo apt-cache show emacs # 查得版本为24
+sudo apt-get install emacs
+可以使用我的配置，下载较慢
+命令行登录设置
+vim .bashrc
+alias em='LC_CTYPE=zh_CN.UTF-8 emacs &'
+source .bashrc
+菜单登录设置
+cd /usr/bin
+ll emacs*
+mv emacs24 emacs24.bak
+vim emacs24
+#!/bin/bash
+export LC_CTYPE=zh_CN.UTF-8
+/usr/bin/emacs24-x $@
+
+后来emacs下不能输入中文 查资料 折腾了半天
+https://emacs-china.org/t/topic/1271/7
+http://wangzhe3224.github.io/emacs/2015/08/31/fcitx-emacs.html
+http://ev6r.github.io/blog/2013/10/28/start-emacs-in-a-utf-8-environment/
+最终解决方法为 卸载ibus
+sudo apt remove ibus
+
+折腾记录
+setting->region & language->添加中文
+setting->Language & Support->改为ibus
+发现在ibus下可以在emacs输入，缺点是输入时没有提示中英文的提示，Ctrl+space 和 Shift 设置混乱，自带输入法使用也一般
+
+| 我的 bd | hello  | Hello |
+| margd d | isnot  | ok    |
+| Heloo的 | MeiLii | f     |
