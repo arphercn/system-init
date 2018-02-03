@@ -12,10 +12,29 @@ http://www.jb51.net/article/100611.htm 安装Ubuntu 16.04后要做的事（总�
 http://blog.csdn.net/xw12138/article/details/78005554?locationNum=2&fps=1 ubuntu16.04主题美化和软件推荐
 http://blog.csdn.net/u013160795/article/details/54615147?%3E Ubuntu16.04 安装常用软件
 
-http://blog.csdn.net/liuqz2009/article/details/52087019 Ubuntu 16.04LTS安装后需要做的事
+http://blog.csdn.net/liuqz2009/article/details/52087019 Ubuntu 16.04LTS安装后需要做的事 包含设置快捷键
 秒变mac os  修改快捷键
 
 安装阿里云源
+cd /etc/apt
+cp sources.list sources.list.bak
+vim sources.list
+#+BEGIN_EXAMPLE
+#deb包
+deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+##测试版源  
+deb http://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse
+# 源码  
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+##测试版源  
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse
+#+END_EXAMPLE
 
 提示安装更新，点击next后，报错按提示运行解决
   sudo apt-get install -f  # apt安装时提示依赖问题可通过这条命令解决
@@ -125,3 +144,8 @@ setting->Language & Support->改为ibus
 | 我的 bd | hello  | Hello |
 | margd d | isnot  | ok    |
 | Heloo的 | MeiLii | f     |
+
+
+设置快捷键
+Keyboard->Shortcuts->Custorm Shortcuts           add       nautilus    Super+E
+                   ->Hide all normal windows     change                Super+D
